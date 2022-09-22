@@ -1,0 +1,46 @@
+name: WDIO-telnyx
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+    - name: Install dependencies
+      run: npm ci
+    - name: Run WDIO test firefox
+      run: npx run test:firefox:headless
+    - uses: actions/checkout@v2
+      with:
+        repository: Honest-Foxy/WDIO-telnyx
+        ref: allure-firefox-report
+        path: ./docs
+    - name: Copy History
+      if: always()
+      run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
+    - name: Generate Allure Report
+      run: npm run generate
+    - uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: allure-firefox-report
+        path: allure-report/
+        retention-days: 30
+    - name: Push to repository
+      uses: cpina/github-action-push-to-another-repository@main
+      if: always()
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
+      with:
+        source-directory: 'allure-report'
+        destination-github-username: 'Honest-Foxy'
+        destination-repository-name: 'WDIO-telnyx'
+        user-email: malakhova.dariya@gmail.com
+        target-branch: allure-firefox-report

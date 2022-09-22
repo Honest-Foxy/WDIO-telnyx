@@ -1,0 +1,31 @@
+{
+    "name": "webdriverio-tests",
+    "version": "0.1.0",
+    "private": true,
+    "devDependencies": {
+        "@wdio/allure-reporter": "^7.24.0",
+        "@wdio/cli": "^7.24.0",
+        "@wdio/local-runner": "^7.24.0",
+        "@wdio/mocha-framework": "^7.24.0",
+        "@wdio/selenium-standalone-service": "^7.24.1",
+        "@wdio/spec-reporter": "^7.24.0",
+        "allure-commandline": "^2.18.1",
+        "chromedriver": "^105.0.1",
+        "geckodriver": "^3.0.2",
+        "randomstring": "^1.2.2",
+        "wdio-chromedriver-service": "^7.3.2",
+        "wdio-docker-service": "^3.2.1",
+        "wdio-edgedriver-service": "^1.2.0",
+        "wdio-geckodriver-service": "^3.0.5"
+    },
+    "scripts": {
+        "test:chrome:headless": "npx wdio run ./config/wdio.config.chrome.headless.js",
+        "test:firefox:headless": "npx wdio run ./config/wdio.firefox.edge.headless.js",
+        "test:edge:headless": "npx wdio run ./config/wdio.config.edge.headless.js",
+        "test:chrome:headless:spec": "npx wdio run ./config/wdio.config.chrome.headless.js --spec ./specs/**/CEP.js",
+        "report": "allure open allure-report",
+        "generate": "npx allure generate allure-results --clean",
+        "allureserve": "npx allure serve allure-results"
+        
+    }
+}
