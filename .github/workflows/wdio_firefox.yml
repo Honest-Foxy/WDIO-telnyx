@@ -1,4 +1,4 @@
-name: WDIO-telnyx
+name: WDIO-telnyx-firefox
 on:
   push:
     branches: [ main, master ]
@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Run WDIO test firefox
-      run: npx run test:firefox:headless
+      run: npm run test:firefox:headless
     - uses: actions/checkout@v2
       with:
         repository: Honest-Foxy/WDIO-telnyx

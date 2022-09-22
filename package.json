@@ -11,6 +11,7 @@
         "@wdio/spec-reporter": "^7.24.0",
         "allure-commandline": "^2.18.1",
         "chromedriver": "^105.0.1",
+        "cross-env": "^7.0.3",
         "geckodriver": "^3.0.2",
         "randomstring": "^1.2.2",
         "wdio-chromedriver-service": "^7.3.2",
@@ -19,13 +20,12 @@
         "wdio-geckodriver-service": "^3.0.5"
     },
     "scripts": {
-        "test:chrome:headless": "npx wdio run ./config/wdio.config.chrome.headless.js",
-        "test:firefox:headless": "npx wdio run ./config/wdio.firefox.edge.headless.js",
-        "test:edge:headless": "npx wdio run ./config/wdio.config.edge.headless.js",
+        "test:chrome:headless": "cross-env TESTS_ENV=ui npx wdio run ./config/wdio.config.chrome.headless.js",
+        "test:firefox:headless": "cross-env TESTS_ENV=ui npx wdio run ./config/wdio.firefox.edge.headless.js",
+        "test:edge:headless": "cross-env TESTS_ENV=ui npx wdio run ./config/wdio.config.edge.headless.js",
         "test:chrome:headless:spec": "npx wdio run ./config/wdio.config.chrome.headless.js --spec ./specs/**/CEP.js",
         "report": "allure open allure-report",
         "generate": "npx allure generate allure-results --clean",
         "allureserve": "npx allure serve allure-results"
-        
     }
 }

@@ -1,5 +1,7 @@
 const exec = require('child_process').exec;
 const allure = require('allure-commandline');
+const helper = require('../helper/helper');
+const envURLs = helper.parseJsonFile('./env/env.json');
 
 const wdioConfig = {
     runner: 'local',
@@ -24,7 +26,7 @@ const wdioConfig = {
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     logLevel: 'warn',
     bail: 0,
-    baseUrl: 'https://telnyx.com/',
+    baseUrl: envURLs.BASE_URL,
     waitforTimeout: 20000,
     connectionRetryTimeout: 90000,
     connectionRetryCount: 3,

@@ -1,4 +1,4 @@
-name: WDIO-telnyx
+name: WDIO-telnyx-chrome
 on:
   push:
     branches: [ main, master ]
@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Run WDIO test chrome
-      run: npx run test:chrome:headless
+      run: npm run test:chrome:headless
     - uses: actions/checkout@v2
       with:
         repository: Honest-Foxy/WDIO-telnyx
