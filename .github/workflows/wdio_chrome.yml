@@ -22,8 +22,11 @@ jobs:
         repository: Honest-Foxy/WDIO-telnyx
         ref: allure-chrome-report
         path: ./docs
-
+    - name: Copy History
+      if: always()
+      run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
     - name: Generate Allure Report
+      if: always()
       run: npm run generate
     - uses: actions/upload-artifact@v2
       if: always()
