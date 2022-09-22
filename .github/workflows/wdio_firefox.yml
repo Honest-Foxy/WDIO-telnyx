@@ -18,6 +18,7 @@ jobs:
     - name: Run WDIO test firefox
       run: npm run test:firefox:headless
     - uses: actions/checkout@v2
+      if: always()
       with:
         repository: Honest-Foxy/WDIO-telnyx
         ref: allure-firefox-report

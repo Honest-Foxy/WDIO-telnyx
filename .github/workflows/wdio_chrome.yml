@@ -18,6 +18,7 @@ jobs:
     - name: Run WDIO test chrome
       run: npm run test:chrome:headless
     - uses: actions/checkout@v2
+      if: always()
       with:
         repository: Honest-Foxy/WDIO-telnyx
         ref: allure-chrome-report
